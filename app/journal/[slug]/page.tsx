@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { SiteFooter, SiteHeader } from '@/components/site-header';
@@ -9,4 +10,5 @@ const entries: Record<string, { number: string; title: string; deck: string; dat
 };
 
 export function generateStaticParams() { return Object.keys(entries).map((slug) => ({ slug })); }
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> { const { slug } = await params; const entry = entries[slug]; if (!entry) return {}; return { title: entry.title, description: entry.deck, openGraph: { title: entry.title, description: entry.deck } }; }
 export default async function JournalEntry({ params }: { params: Promise<{ slug: string }> }) { const { slug } = await params; const entry = entries[slug]; if (!entry) notFound(); return <><SiteHeader /><main className="frame journal-entry"><p className="kicker">Journal / {entry.number} · {entry.date}</p><h1 className="page-title">{entry.title}</h1><p className="page-intro">{entry.deck}</p><article className="journal-body">{entry.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</article><Link className="text-link" href="/research">Return to the research record →</Link></main><SiteFooter /></>; }

@@ -1,3 +1,9 @@
+import type { Metadata } from 'next';
 import { SiteFooter, SiteHeader } from '@/components/site-header';
+
+export const metadata: Metadata = {
+  title: 'Privacy',
+  description: 'The privacy approach for Virality Research.',
+};
 
 export default function PrivacyPage() { return <><SiteHeader /><main className="frame page narrow"><p className="kicker">Privacy</p><h1 className="page-title">A deliberately quiet site.</h1><div className="prose"><p>This launch version does not use third-party analytics, embedded social feeds, accounts, or an on-site submission database.</p><p>If you use an email link, your message is handled by your email provider and the recipient’s email service. If a public issue tracker is added, its own privacy terms apply. Do not include sensitive personal information in contributions.</p><p>This policy will be updated before any new form, subscription, analytics, or account feature is introduced.</p></div></main><SiteFooter /></>; }
