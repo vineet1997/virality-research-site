@@ -1,51 +1,78 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
 
-type Phase = {
+type Stage = {
   id: string;
   number: string;
   title: string;
-  state: 'Complete' | 'In progress' | 'Next' | 'Later';
-  summary: string;
   detail: string;
+  state: 'Complete' | 'Current' | 'Next' | 'Later';
+  panelTitle: string;
+  panelBody: string;
+  facts: Array<{ value: string; label: string }>;
 };
 
-const phases: Phase[] = [
-  { id: 'discovery', number: '01', title: 'Discovery', state: 'Complete', summary: 'Finding, screening, and organising the reading universe.', detail: '542 candidate results were reviewed and a 140-source catalogue was created.' },
-  { id: 'ingestion', number: '02', title: 'Ingestion', state: 'In progress', summary: 'Turning lawful source material into reviewable records.', detail: 'This is the active phase. Each source is extracted once, mapped into sections, and checked before it enters the evidence record.' },
-  { id: 'evidence', number: '03', title: 'Evidence', state: 'Next', summary: 'Comparing verified source-level findings across themes.', detail: 'This phase will test agreements, disagreements, limitations, and boundary conditions across multiple sources.' },
-  { id: 'treatise', number: '04', title: 'Treatise', state: 'Later', summary: 'Writing the source-linked public guide.', detail: 'Writing begins after there is enough verified material to make cross-source claims responsibly.' },
+const stages: Stage[] = [
+  {
+    id: 'field', number: '01', title: 'Map the field', detail: '542 leads reviewed · 140 sources catalogued', state: 'Complete',
+    panelTitle: 'Discovering everything written on virality and then shortlisting some to read.',
+    panelBody: 'It creates a reading universe broad enough to challenge the usual viral-post explanations but small enough for me to actually go through it.',
+    facts: [{ value: '542', label: 'candidate leads reviewed' }, { value: '140', label: 'sources catalogued' }, { value: '30', label: 'books on the long-form shelf' }],
+  },
+  {
+    id: 'records', number: '02', title: 'Build source records', detail: 'Read, extract, check, and retain the limits of each source.', state: 'Current',
+    panelTitle: 'Turn the reading into a record that can be questioned.',
+    panelBody: 'Each source is extracted once, mapped into its relevant sections, and checked before it can inform the wider analysis.',
+    facts: [{ value: '25 / 43', label: 'essential sources entered' }, { value: '132', label: 'source-level evidence cards reviewed' }, { value: '18', label: 'essential sources still to enter' }],
+  },
+  {
+    id: 'evidence', number: '03', title: 'Compare the evidence', detail: 'Look for patterns, disagreements, and conditions across sources.', state: 'Next',
+    panelTitle: 'Ask what remains true when sources are put beside each other.',
+    panelBody: 'This stage looks for agreement, disagreement, limitations, and boundary conditions. It keeps causal findings separate from correlations, practitioner frameworks, and anecdotes.',
+    facts: [{ value: 'Across', label: 'different disciplines and media' }, { value: 'Against', label: 'contrary and null findings' }, { value: 'With', label: 'limits kept beside the claim' }],
+  },
+  {
+    id: 'guides', number: '04', title: 'Publish the guides', detail: 'Fundamentals that travel, plus channel-specific guidance.', state: 'Later',
+    panelTitle: 'Make the useful parts public without pretending the answer is final.',
+    panelBody: 'The aim is a source-linked treatise, durable fundamentals of virality, and channel-specific guides that make clear where platforms and contexts change the answer.',
+    facts: [{ value: 'Fundamentals', label: 'that travel across contexts' }, { value: 'Guides', label: 'for channel-specific conditions' }, { value: 'Sources', label: 'linked back to the record' }],
+  },
 ];
 
 export function ProjectProgress() {
-  const [selectedId, setSelectedId] = useState('ingestion');
-  const selected = phases.find((phase) => phase.id === selectedId) ?? phases[1];
+  const [selectedId, setSelectedId] = useState('records');
+  const selected = stages.find((stage) => stage.id === selectedId) ?? stages[1];
 
   return (
     <section className="project-progress frame section-rule" aria-labelledby="progress-heading">
-      <div className="section-label">Research progress</div>
+      <div className="section-label">Project status</div>
       <div className="project-progress__body">
-        <h2 id="progress-heading">Where the project is now.</h2>
-        <p className="project-progress__intro">The project moves from a reading universe to verified evidence, then to cross-source synthesis. Select a stage to see what it means.</p>
-        <div className="progress-stages" aria-label="Project stages">
-          {phases.map((phase) => (
-            <Button
-              aria-pressed={phase.id === selected.id}
-              className="progress-stage"
-              key={phase.id}
-              onClick={() => setSelectedId(phase.id)}
+        <h2 id="progress-heading">My flow from mapping the ecosystem to reading all the shortlisted sources and beyond.</h2>
+        <div className="research-route__guide" id="research-route-help"><span>Research flow</span><b aria-hidden="true">01 → 02 → 03 → 04</b></div>
+        <div aria-describedby="research-route-help" className="research-route" role="tablist" aria-label="Research stages">
+          {stages.map((stage) => (
+            <button
+              aria-controls={`stage-panel-${stage.id}`}
+              aria-selected={stage.id === selected.id}
+              className={`research-route__stage${stage.id === selected.id ? ' research-route__stage--selected' : ''}`}
+              id={`stage-tab-${stage.id}`}
+              key={stage.number}
+              onClick={() => setSelectedId(stage.id)}
+              role="tab"
               type="button"
-              variant="ghost"
             >
-              <span>{phase.number}</span><strong>{phase.title}</strong><em>{phase.state}</em>
-            </Button>
+              <span className="research-route__number">{stage.number}</span>
+              <div><strong>{stage.title}</strong><p>{stage.detail}</p></div>
+              <em>{stage.state}</em>
+            </button>
           ))}
         </div>
-        <div className="progress-detail" aria-live="polite">
-          <div><span className={`tag progress-state progress-state--${selected.state.toLowerCase().replaceAll(' ', '-')}`}>{selected.state}</span><h3>{selected.title}</h3><p>{selected.detail}</p></div>
-          {selected.id === 'ingestion' ? <div className="ingestion-progress"><div className="ingestion-progress__heading"><span>Essential sources entered</span><strong>25 of 43</strong></div><div className="ingestion-meter" aria-label="25 of 43 essential sources have entered the workflow"><span style={{ width: '58.14%' }} /></div><div className="ingestion-stats"><p><strong>23</strong><span>machine-readable sources processed</span></p><p><strong>2</strong><span>image-only sources in the OCR backlog</span></p><p><strong>18</strong><span>essential sources yet to enter a corpus stage</span></p><p><strong>132</strong><span>reviewed evidence cards so far</span></p></div></div> : <div className="phase-summary"><p>{selected.summary}</p><span>Not a project completion score</span></div>}
+        <div aria-labelledby={`stage-tab-${selected.id}`} className="current-work" id={`stage-panel-${selected.id}`} role="tabpanel">
+          <div><span className="tag">Selected stage / {selected.state}</span><h3>{selected.panelTitle}</h3><p>{selected.panelBody}</p></div>
+          <dl className="current-work__stats">
+            {selected.facts.map((fact) => <div key={fact.value}><dt>{fact.value}</dt><dd>{fact.label}</dd></div>)}
+          </dl>
         </div>
       </div>
     </section>
