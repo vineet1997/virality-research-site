@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { DM_Mono, DM_Sans, Instrument_Serif } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 import './home.css';
 import './workspace.css';
@@ -39,5 +40,5 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body className={`${display.variable} ${sans.variable} ${mono.variable}`}>{children}</body></html>;
+  return <html lang="en"><body className={`${display.variable} ${sans.variable} ${mono.variable}`}>{children}<Analytics /></body></html>;
 }
