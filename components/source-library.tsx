@@ -123,6 +123,7 @@ export function SourceLibrary({ sources }: { sources: SourceRecord[] }) {
           <div><span className="tag">Source spotlight</span><span>{selected.id} · {selected.sourceType} · {selected.year}</span></div>
           <h2>{selected.title}</h2>
           <p>{selected.whyItMatters}</p>
+          <p>{selected.accessNote}{selected.lastReviewed ? ` Reviewed ${selected.lastReviewed}.` : ''}</p>
           <div><button onClick={() => setSelectedId(null)} type="button">Close</button><a href={selected.url} rel="noreferrer" target="_blank">Open original source <ExternalLink size={14} /></a></div>
         </aside>
       )}

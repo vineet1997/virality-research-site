@@ -1,0 +1,67 @@
+[
+  {
+    "id": "19",
+    "kind": "Practitioner framework",
+    "source": {
+      "id": "S101",
+      "title": "The Cold Start Problem",
+      "url": "https://www.coldstart.com/"
+    },
+    "scope": "conceptual",
+    "locator": "Chapter 13 · How Great Tools Help Tip Entire Markets; Why This Strategy Works, and When It Doesn’t",
+    "title": "A useful tool does not automatically become a useful network.",
+    "text": "Chen proposes that standalone utility can support a product before its network forms. He also warns that tool users may never make the transition: sharing or collaboration needs a close connection to the original task. This is a practitioner hypothesis illustrated by company cases, not a measured causal effect."
+  },
+  {
+    "id": "18",
+    "kind": "Scholarly synthesis",
+    "source": {
+      "id": "S011",
+      "title": "Diffusion of Innovations, fifth edition",
+      "url": "https://www.simonandschuster.com/books/Diffusion-of-Innovations-5th-Edition/Everett-M-Rogers/9780743222099"
+    },
+    "scope": "conceptual",
+    "locator": "Chapter 6 · Research on the Attributes of Innovations",
+    "title": "The advantage that matters is the one a potential adopter perceives.",
+    "text": "Rogers organizes adoption attributes around perceived advantage, fit, complexity, trialability, and visible results. The framework is a way to ask better questions about a product; the five attributes can overlap and may miss something important in a particular setting. It does not establish five universal growth levers."
+  },
+  {
+    "id": "17",
+    "kind": "Observational campaign analysis",
+    "source": {
+      "id": "S088",
+      "title": "Seeding Strategies for Viral Marketing",
+      "url": "https://www.marketing.uni-frankfurt.de/fileadmin/Publikationen/Hinz-Skiera-Barrot-Becker-2011-Seeding-Strategies_in_Journal-of-Marketing.pdf#page=12"
+    },
+    "scope": "empirical",
+    "locator": "Study 3 · printed pp. 65–66 · Table 7",
+    "title": "A successful seed can be active and well connected without being more persuasive.",
+    "text": "In the mobile referral campaign, more connected customers were more likely to participate and made more referrals when they did. Among active referrers, connectivity did not significantly predict conversion per referral. These are observational associations; a nonsignificant result does not prove equal persuasiveness."
+  },
+  {
+    "id": "16",
+    "kind": "Observational time-series model",
+    "source": {
+      "id": "S076",
+      "title": "Effects of Word-of-Mouth Versus Traditional Marketing",
+      "url": "https://marketingandmetrics.com/wp-content/uploads/2020/06/10.-Effect-of-Word.pdf#page=28"
+    },
+    "scope": "empirical",
+    "locator": "April 2008 author manuscript · pp. 26–29",
+    "title": "A longer referral after-effect is still different from permanent growth.",
+    "text": "The authors reported roughly three weeks of modeled signup response to referral activity at one site. The April 2008 manuscript gives an unclear uncertainty rule, so that duration should not be read as a precise cutoff. Signup changes were temporary in their model; neither retained growth nor a causal effect of redesigning referrals was established."
+  },
+  {
+    "id": "15",
+    "kind": "Theoretical diffusion model",
+    "source": {
+      "id": "S027",
+      "title": "New Product Diffusion with Influentials and Imitators",
+      "url": "https://faculty.wharton.upenn.edu/wp-content/uploads/2012/04/VdB_Joshi-MKS-2007.pdf#page=3"
+    },
+    "scope": "conceptual",
+    "locator": "Introduction and Section 2 · printed pp. 401–402",
+    "title": "Adopting early and influencing others are different roles.",
+    "text": "Van den Bulte and Joshi separate people by assumed adoption drivers and direction of influence, rather than when they adopt. Their model shows why timing alone need not reveal influence. Fitting an aggregate growth curve does not demonstrate that the proposed social mechanism caused it."
+  }
+]

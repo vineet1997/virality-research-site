@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import researchStatus from '@/data/research-status.json';
 
 type Stage = {
   id: string;
@@ -24,7 +25,7 @@ const stages: Stage[] = [
     id: 'records', number: '02', title: 'Build source records', detail: 'Read, extract, check, and retain the limits of each source.', state: 'Current',
     panelTitle: 'Turn the reading into a record that can be questioned.',
     panelBody: 'Each source is extracted once, mapped into its relevant sections, and checked before it can inform the wider analysis.',
-    facts: [{ value: '25 / 43', label: 'essential sources entered' }, { value: '132', label: 'source-level evidence cards reviewed' }, { value: '18', label: 'essential sources still to enter' }],
+    facts: [{ value: `${researchStatus.essentialEntered} / ${researchStatus.essentialSources}`, label: `essential sources entered; ${researchStatus.essentialDeferred} await OCR` }, { value: String(researchStatus.reviewedCards), label: 'source-level evidence cards reviewed' }, { value: String(researchStatus.essentialUnstaged), label: 'essential sources still to enter' }],
   },
   {
     id: 'evidence', number: '03', title: 'Compare the evidence', detail: 'Look for patterns, disagreements, and conditions across sources.', state: 'Next',

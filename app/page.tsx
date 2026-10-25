@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import researchStatus from '@/data/research-status.json';
 import { HeroNetwork } from '@/components/hero-network';
 import { ProjectProgress } from '@/components/project-progress';
 import { ReadingNow } from '@/components/reading-now';
@@ -13,7 +14,7 @@ const questions = [
 export default function Home() {
   return (
     <main>
-      <div className="status-strip"><div className="frame status-strip__inner"><span className="status-dot" /><p><strong>Now exploring how things spread through people and networks</strong><span aria-hidden="true"> · </span>Updated 1 September 2026</p><Link href="/research">Open the notebook <span aria-hidden="true">→</span></Link></div></div>
+      <div className="status-strip"><div className="frame status-strip__inner"><span className="status-dot" /><p><strong>{researchStatus.currentThread}</strong><span aria-hidden="true"> · </span>Updated {researchStatus.updatedLabel}</p><Link href="/research">Open the notebook <span aria-hidden="true">→</span></Link></div></div>
       <header className="site-header frame"><Link className="wordmark" href="/">Virality <span>Research</span></Link><nav aria-label="Primary navigation"><Link href="/research">Notebook</Link><Link href="/sources">Library</Link><Link href="/contribute">Improve the record</Link></nav></header>
       <section className="hero frame"><div className="hero__eyebrow">A public learning project</div><div className="hero__grid"><div className="hero__statement"><h1>What makes <span aria-hidden="true" className="hero__rotator"><span className="hero__rotator-track"><span>information</span><span>ideas</span><span>behaviours</span><span>culture</span><span>products</span><span>information</span></span></span><span className="sr-only"> information, ideas, behaviours, culture, and products </span>spread?</h1></div><HeroNetwork /></div></section>
       <section className="origin frame section-rule"><div className="section-label">Origin</div><div className="origin__content"><h2>A familiar mystery, examined carefully.</h2><p>I build products and write online. Like most people who make things, I hope the work will occasionally reach the people it is for. Usually it doesn’t travel very far.</p><p>Once a LinkedIn post of mine reached roughly 200,000 views. I still couldn’t say exactly why. At first, I thought the answer was simply algorithmic opacity.</p><p>But I started noticing that some songs, games, phrases, and stories had travelled between childhoods and communities long before digital feeds existed, while others didn’t. That suggests there may be fundamentals to virality beyond channel-specific nuances.</p><p>I’m going to read books and research papers on this topic and see if I can find them.</p></div></section>

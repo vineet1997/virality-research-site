@@ -3,6 +3,7 @@
 import { useMemo, useState, type CSSProperties } from 'react';
 
 import { NativeSelect } from '@/components/ui/native-select';
+import readingUpdate from '@/data/reading-update.json';
 
 type NoteScope = 'empirical' | 'conceptual' | 'platform';
 
@@ -13,9 +14,11 @@ type ReadingNote = {
   scope: NoteScope;
   title: string;
   text: string;
+  locator?: string;
 };
 
 const readingNotes: ReadingNote[] = [
+  ...(readingUpdate as ReadingNote[]),
   {
     id: '14',
     kind: 'Randomized field experiment',
@@ -151,7 +154,7 @@ export function ReadingNotes() {
           <div className="featured-note__meta">
             <span>Latest note</span>
             <span>{latest.kind}</span>
-            <a href={latest.source.url} rel="noreferrer" target="_blank">{latest.source.id} · {latest.source.title}</a>
+            <a href={latest.source.url} rel="noreferrer" target="_blank">{latest.source.id} · {latest.source.title}{latest.locator ? ` · ${latest.locator}` : ''}</a>
           </div>
           <h3>{latest.title}</h3>
           <p>{latest.text}</p>
@@ -166,7 +169,7 @@ export function ReadingNotes() {
               <NativeSelect aria-label="Filter reading notes" onChange={(event) => setScope(event.target.value as 'all' | NoteScope)} size="sm" value={scope}>
                 <option value="all">All notes</option>
                 <option value="empirical">Empirical studies</option>
-                <option value="conceptual">Models &amp; reviews</option>
+                <option value="conceptual">Models, reviews &amp; frameworks</option>
                 <option value="platform">Platform cases</option>
               </NativeSelect>
             </label>
@@ -186,7 +189,7 @@ export function ReadingNotes() {
               <div className="note-slip__meta">
                 <span>{note.id}</span>
                 <span>{note.kind}</span>
-                <a href={note.source.url} rel="noreferrer" target="_blank">{note.source.id} · {note.source.title}</a>
+                <a href={note.source.url} rel="noreferrer" target="_blank">{note.source.id} · {note.source.title}{note.locator ? ` · ${note.locator}` : ''}</a>
               </div>
               <h3>{note.title}</h3>
               <p>{note.text}</p>
